@@ -230,12 +230,8 @@ jobs:
       - uses: ethpandaops/hive-github-action/helpers/self-hosted-runner-dependencies@09050fc75bae8a10b1876a0826ca4114ea9ed6e8 # v0.6.3
         if: runner.environment != 'github-hosted'
 
-      # Trial: ethpandaops/hive-github-action master plus a crun option
-      # (danceratopz/hive-github-action use-crun), to measure crun against
-      # runc for client container starts.
-      - uses: danceratopz/hive-github-action@use-crun
+      - uses: ethpandaops/hive-github-action@master # v0.6.x-unreleased
         with:
-          container_runtime: crun
           hive_repository: ${{ needs.prepare.outputs.hive_repo }}
           hive_version: ${{ needs.prepare.outputs.hive_tag }}
           client: ${{ inputs.client_matrix == 'true' && matrix.client || join(fromJSON(inputs.client), ',') }}
